@@ -19,7 +19,7 @@ namespace PushVodIngestion
    
     public class DAL
     {
-        private string test;
+        private string test1;
         private static SqlConnection con = new SqlConnection();
         public DAL()
         {
