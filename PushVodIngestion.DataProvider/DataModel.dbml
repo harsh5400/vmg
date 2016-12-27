@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbPushVOD" Class="DataModelDataContext" Serialization="Unidirectional" EntityBase="Framework.LINQEntityBase" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LHUBPLAHARSHLAP;Initial Catalog=dbPushVOD;Persist Security Info=True;User ID=sa;Pooling=False" SettingsObjectName="PushVodIngestion.DataProvider.Properties.Settings" SettingsPropertyName="dbPushVODConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tbl_Adi_ingest_item_file_info" Member="tbl_Adi_ingest_item_file_infos">
+    <Type Name="tbl_Adi_ingest_item_file_info">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="itemCode" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="duration_Frames" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="rowguid" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblAutomation" Member="tblAutomations">
+    <Type Name="tblAutomation">
+      <Column Name="SID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AutomationPlateform" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="tblAutomation_tblPlayoutPort" Member="tblPlayoutPorts" ThisKey="SID" OtherKey="AutomationSID" Type="tblPlayoutPort" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblChannel" Member="tblChannels">
+    <Type Name="tblChannel">
+      <Column Name="SID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SrcSID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="addon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="modon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tblChannel_tblIngestion" Member="tblIngestions" ThisKey="SID" OtherKey="ChannelSID" Type="tblIngestion" />
+      <Association Name="tblSrc_tblChannel" Member="tblSrc" ThisKey="SrcSID" OtherKey="SID" Type="tblSrc" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblDes" Member="tblDes">
+    <Type Name="tblDe">
+      <Column Name="SID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Camera" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="tblDe_tblIngestion" Member="tblIngestions" ThisKey="SID" OtherKey="DesSID" Type="tblIngestion" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblIngestion" Member="tblIngestions">
+    <Type Name="tblIngestion" Id="ID2">
+      <Column Name="SID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TxId" Type="System.String" DbType="VarChar(10)" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ChannelSID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ProgrameName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="StartTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="EndTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Duration" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="DeleteDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="addon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="modon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DesSID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="SourceTypeSID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="itemCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ReadyToAir" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="tblIngestion_tblPlaylist" Member="tblPlaylists" ThisKey="SID" OtherKey="MediaSID" Type="tblPlaylist" />
+      <Association Name="tblChannel_tblIngestion" Member="tblChannel" ThisKey="ChannelSID" OtherKey="SID" Type="tblChannel" IsForeignKey="true" />
+      <Association Name="tblDe_tblIngestion" Member="tblDe" ThisKey="DesSID" OtherKey="SID" Type="tblDe" IsForeignKey="true" />
+      <Association Name="tblSourceType_tblIngestion" Member="tblSourceType" ThisKey="SourceTypeSID" OtherKey="SID" Type="tblSourceType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblPlayoutPort" Member="tblPlayoutPorts">
+    <Type Name="tblPlayoutPort" Id="ID1">
+      <Column Name="SID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Descriptions" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ChannelName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="AutomationSID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="StartTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Association Name="tblPlayoutPort_tblPlaylist" Member="tblPlaylists" ThisKey="SID" OtherKey="PlayoutPortSID" Type="tblPlaylist" />
+      <Association Name="tblAutomation_tblPlayoutPort" Member="tblAutomation" ThisKey="AutomationSID" OtherKey="SID" Type="tblAutomation" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblReportVersion" Member="tblReportVersions">
+    <Type Name="tblReportVersion">
+      <Column Name="SID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ReportName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="lastVersion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="lastDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ChannelSID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblSourceType" Member="tblSourceTypes">
+    <Type Name="tblSourceType">
+      <Column Name="SID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="tblSourceType_tblIngestion" Member="tblIngestions" ThisKey="SID" OtherKey="SourceTypeSID" Type="tblIngestion" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblSrc" Member="tblSrcs">
+    <Type Name="tblSrc">
+      <Column Name="SID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="tblSrc_tblChannel" Member="tblChannels" ThisKey="SID" OtherKey="SrcSID" Type="tblChannel" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vwApprovedPlaylist" Member="vwApprovedPlaylists">
+    <Type Name="vwApprovedPlaylist">
+      <Column Name="SID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PlayoutTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="PlayoutPortSID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="MediaSID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="addon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="modon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="PlayOrderSID" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FixedEvent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SchDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Approved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Exported" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vwChannel" Member="vwChannels">
+    <Type Name="vwChannel">
+      <Column Name="SID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="SourcePort" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vwDubList" Member="vwDubLists">
+    <Type Name="vwDubList">
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="itemCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SourceTypeSID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ProgrameName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Duration" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vwIngestion" Member="vwIngestions">
+    <Type Name="vwIngestion">
+      <Column Name="SID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TxId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ProgrameName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ChannelName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="StartTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="EndTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="SorcePort" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DestinationPort" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Camera" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DestinationPortSID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="SourceTypeSID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Duration" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="DeleteDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="SID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LoginName" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="LoginPassword" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PrefixList" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="ChannelList" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblPlaylistSecondryEvent" Member="tblPlaylistSecondryEvents">
+    <Type Name="tblPlaylistSecondryEvent">
+      <Column Name="SID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="tblPlaylistSecondryEvent_tblPlaylistSecondryEventDetail" Member="tblPlaylistSecondryEventDetails" ThisKey="SID" OtherKey="tblPlaylistSecondryEventSID" Type="tblPlaylistSecondryEventDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblPlaylistSecondryEventDetail" Member="tblPlaylistSecondryEventDetails">
+    <Type Name="tblPlaylistSecondryEventDetail">
+      <Column Name="SID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tblPlaylistSecondryEventSID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="tblSecondryEventRuleSID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="tblPlaylistSecondryEvent_tblPlaylistSecondryEventDetail" Member="tblPlaylistSecondryEvent" ThisKey="tblPlaylistSecondryEventSID" OtherKey="SID" Type="tblPlaylistSecondryEvent" IsForeignKey="true" />
+      <Association Name="tblSecondryEventRule_tblPlaylistSecondryEventDetail" Member="tblSecondryEventRule" ThisKey="tblSecondryEventRuleSID" OtherKey="SID" Type="tblSecondryEventRule" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblSecondryEventRule" Member="tblSecondryEventRules">
+    <Type Name="tblSecondryEventRule">
+      <Column Name="SID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TxIdPrefix" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="tblSecondaryEventTypeSID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Prefix" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Enable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="OffsetTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Duration" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="EventType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TimeMode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Mode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="tblSecondryEventRule_tblPlaylistSecondryEventDetail" Member="tblPlaylistSecondryEventDetails" ThisKey="SID" OtherKey="tblSecondryEventRuleSID" Type="tblPlaylistSecondryEventDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblPlaylist" Member="tblPlaylists">
+    <Type Name="tblPlaylist">
+      <Column Name="SID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PlayoutTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="PlayoutPortSID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="MediaSID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="addon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="modon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="PlayOrderSID" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FixedEvent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SchDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Approved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Exported" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="tblPlaylistSecondryEventSID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="LiveEvent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LiveEventDuration" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="LiveTitle" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="LiveTXID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="tblIngestion_tblPlaylist" Member="tblIngestion" ThisKey="MediaSID" OtherKey="SID" Type="tblIngestion" IsForeignKey="true" />
+      <Association Name="tblPlayoutPort_tblPlaylist" Member="tblPlayoutPort" ThisKey="PlayoutPortSID" OtherKey="SID" Type="tblPlayoutPort" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.GetUserChannels" Method="GetUserChannels">
+    <Parameter Name="userSID" Type="System.Int64" DbType="BigInt" />
+    <ElementType IdRef="ID1" />
+  </Function>
+  <Function Name="dbo.GetUserIngestion" Method="GetUserIngestion">
+    <Parameter Name="userSID" Type="System.Int64" DbType="BigInt" />
+    <ElementType IdRef="ID2" />
+  </Function>
+</Database>

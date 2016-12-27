@@ -1,0 +1,15 @@
+Alter - playout port -  ,[AutomationSID]
+      ,[StartTime]
+
+
+
+Alter -tblReportVersion  ,[ChannelSID] 
+
+
+Alter - tblPlaylist Approved Bit
+
+
+create  - tblautomation
+
+
+Create - VwApprovedPlaylist

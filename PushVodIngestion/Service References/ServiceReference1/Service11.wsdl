@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://14.140.112.80/vodService2/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://14.140.112.80/vodService2/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://14.140.112.80/vodService2/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/PushVodIngestion.ServiceProvider" />
+      <xsd:import schemaLocation="http://14.140.112.80/vodService2/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Framework" />
+      <xsd:import schemaLocation="http://14.140.112.80/vodService2/Service1.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/FrameWork" />
+      <xsd:import schemaLocation="http://14.140.112.80/vodService2/Service1.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/PushVodIngestion.DataProvider" />
+      <xsd:import schemaLocation="http://14.140.112.80/vodService2/Service1.svc?xsd=xsd6" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://14.140.112.80/vodService2/Service1.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService1_GetData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetDataUsingDataContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetDataUsingDataContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetEntities_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEntities" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetEntities_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEntitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetEntitiesBasedOnCondition_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEntitiesBasedOnCondition" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetEntitiesBasedOnCondition_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEntitiesBasedOnConditionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SavePlaylist_InputMessage">
+    <wsdl:part name="parameters" element="tns:SavePlaylist" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SavePlaylist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SavePlaylistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_data_command_InputMessage">
+    <wsdl:part name="parameters" element="tns:data_command" />
+  </wsdl:message>
+  <wsdl:message name="IService1_data_command_OutputMessage">
+    <wsdl:part name="parameters" element="tns:data_commandResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserIngestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserIngestion" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserIngestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserIngestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserChannels_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserChannels" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserChannels_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserChannelsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Save_InputMessage">
+    <wsdl:part name="parameters" element="tns:Save" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Save_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_data_set_InputMessage">
+    <wsdl:part name="parameters" element="tns:data_set" />
+  </wsdl:message>
+  <wsdl:message name="IService1_data_set_OutputMessage">
+    <wsdl:part name="parameters" element="tns:data_setResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Bulk_Copy_InputMessage">
+    <wsdl:part name="parameters" element="tns:Bulk_Copy" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Bulk_Copy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Bulk_CopyResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService1">
+    <wsdl:operation name="GetData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetData" message="tns:IService1_GetData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetDataResponse" message="tns:IService1_GetData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetDataUsingDataContract" message="tns:IService1_GetDataUsingDataContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetDataUsingDataContractResponse" message="tns:IService1_GetDataUsingDataContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEntities">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetEntities" message="tns:IService1_GetEntities_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetEntitiesResponse" message="tns:IService1_GetEntities_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEntitiesBasedOnCondition">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetEntitiesBasedOnCondition" message="tns:IService1_GetEntitiesBasedOnCondition_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetEntitiesBasedOnConditionResponse" message="tns:IService1_GetEntitiesBasedOnCondition_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SavePlaylist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SavePlaylist" message="tns:IService1_SavePlaylist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SavePlaylistResponse" message="tns:IService1_SavePlaylist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="data_command">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/data_command" message="tns:IService1_data_command_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/data_commandResponse" message="tns:IService1_data_command_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserIngestion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUserIngestion" message="tns:IService1_GetUserIngestion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetUserIngestionResponse" message="tns:IService1_GetUserIngestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserChannels">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUserChannels" message="tns:IService1_GetUserChannels_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetUserChannelsResponse" message="tns:IService1_GetUserChannels_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Save" message="tns:IService1_Save_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SaveResponse" message="tns:IService1_Save_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="data_set">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/data_set" message="tns:IService1_data_set_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/data_setResponse" message="tns:IService1_data_set_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Bulk_Copy">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Bulk_Copy" message="tns:IService1_Bulk_Copy_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Bulk_CopyResponse" message="tns:IService1_Bulk_Copy_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetData">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetDataUsingDataContract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEntities">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetEntities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEntitiesBasedOnCondition">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetEntitiesBasedOnCondition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SavePlaylist">
+      <soap:operation soapAction="http://tempuri.org/IService1/SavePlaylist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="data_command">
+      <soap:operation soapAction="http://tempuri.org/IService1/data_command" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserIngestion">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetUserIngestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserChannels">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetUserChannels" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <soap:operation soapAction="http://tempuri.org/IService1/Save" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="data_set">
+      <soap:operation soapAction="http://tempuri.org/IService1/data_set" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bulk_Copy">
+      <soap:operation soapAction="http://tempuri.org/IService1/Bulk_Copy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="BasicHttpBinding_IService1" binding="tns:BasicHttpBinding_IService1">
+      <soap:address location="http://14.140.112.80/vodService2/Service1.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

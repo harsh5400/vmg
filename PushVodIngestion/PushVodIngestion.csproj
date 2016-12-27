@@ -1,0 +1,789 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1B35DCDB-B6F3-488D-8486-6B756BB3C9A5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PushVodIngestion</RootNamespace>
+    <AssemblyName>PushVodIngestion</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>date-128.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>PushVodIngestion.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Outlook, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2014.3.1202.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.GridView, Version=2014.3.1202.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.RadChart, Version=2014.3.1202.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.RadDock, Version=2014.3.1202.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2014.3.1202.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2014.3.1202.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\DubList\frmDubList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DubList\frmDubList.Designer.cs">
+      <DependentUpon>frmDubList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DubList\frmDubListMedia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DubList\frmDubListMedia.Designer.cs">
+      <DependentUpon>frmDubListMedia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmChannelEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmChannelEdit.Designer.cs">
+      <DependentUpon>frmChannelEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmChannelsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmChannelsList.Designer.cs">
+      <DependentUpon>frmChannelsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmDes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDes.Designer.cs">
+      <DependentUpon>frmDes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmDesEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDesEdit.Designer.cs">
+      <DependentUpon>frmDesEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmExport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmExport.Designer.cs">
+      <DependentUpon>frmExport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmIngestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmIngestion.Designer.cs">
+      <DependentUpon>frmIngestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSrcEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSrcEdit.Designer.cs">
+      <DependentUpon>frmSrcEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSrcList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSrcList.Designer.cs">
+      <DependentUpon>frmSrcList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmFindandReplace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmFindandReplace.Designer.cs">
+      <DependentUpon>frmFindandReplace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmKeepList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmKeepList.Designer.cs">
+      <DependentUpon>frmKeepList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmLiveEventDuration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmLiveEventDuration.Designer.cs">
+      <DependentUpon>frmLiveEventDuration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmMedia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmMedia.Designer.cs">
+      <DependentUpon>frmMedia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmMediaEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmMediaEdit.Designer.cs">
+      <DependentUpon>frmMediaEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmMediaHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmMediaHistory.Designer.cs">
+      <DependentUpon>frmMediaHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmMissingVMGContent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmMissingVMGContent.Designer.cs">
+      <DependentUpon>frmMissingVMGContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmMultiExportSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmMultiExportSchedule.Designer.cs">
+      <DependentUpon>frmMultiExportSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmPlaylist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmPlaylist.Designer.cs">
+      <DependentUpon>frmPlaylist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmReplicatePlaylist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmReplicatePlaylist.Designer.cs">
+      <DependentUpon>frmReplicatePlaylist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmSecondaryEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmSecondaryEvent.Designer.cs">
+      <DependentUpon>frmSecondaryEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmSecondaryEventDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmSecondaryEventDetails.Designer.cs">
+      <DependentUpon>frmSecondaryEventDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmSelectChannel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmSelectChannel.Designer.cs">
+      <DependentUpon>frmSelectChannel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmStartTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Playlist\frmStartTime.Designer.cs">
+      <DependentUpon>frmStartTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChangePassword.Designer.cs">
+      <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\DatabaseLookups.cs" />
+    <Compile Include="Helper\DragAndDropRadGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Helper\Mail.cs" />
+    <Compile Include="Helper\ServiceHelper.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="frmDashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDashBoard.Designer.cs">
+      <DependentUpon>frmDashBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\DAL.cs" />
+    <Compile Include="Helper\DALACCESS.cs" />
+    <Compile Include="Helper\Excel_Function.cs" />
+    <Compile Include="Helper\Extensions.cs" />
+    <Compile Include="Helper\Globalcs.cs" />
+    <Compile Include="Helper\LinqBase.cs" />
+    <Compile Include="Helper\MediaUpdateHelper.cs" />
+    <Compile Include="Helper\pdlMasterHelper.cs" />
+    <Compile Include="Helper\PlaylistHelper.cs" />
+    <Compile Include="Helper\radGridProperty.cs" />
+    <Compile Include="Helper\userRightscs.cs" />
+    <Compile Include="Helper\XMLCreater.cs" />
+    <Compile Include="myData.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>myData.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\ServiceReference1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="myData.dbml.layout">
+      <DependentUpon>myData.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="Forms\DubList\frmDubList.resx">
+      <DependentUpon>frmDubList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DubList\frmDubListMedia.resx">
+      <DependentUpon>frmDubListMedia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmChannelEdit.resx">
+      <DependentUpon>frmChannelEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmChannelsList.resx">
+      <DependentUpon>frmChannelsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDes.resx">
+      <DependentUpon>frmDes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDesEdit.resx">
+      <DependentUpon>frmDesEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmExport.resx">
+      <DependentUpon>frmExport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmIngestion.resx">
+      <DependentUpon>frmIngestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSrcEdit.resx">
+      <DependentUpon>frmSrcEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSrcList.resx">
+      <DependentUpon>frmSrcList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Playlist\frmFindandReplace.resx">
+      <DependentUpon>frmFindandReplace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Playlist\frmKeepList.resx">
+      <DependentUpon>frmKeepList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Playlist\frmLiveEventDuration.resx">
+      <DependentUpon>frmLiveEventDuration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Playlist\frmMedia.resx">
+      <DependentUpon>frmMedia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Playlist\frmMediaEdit.resx">
+      <DependentUpon>frmMediaEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Playlist\frmMediaHistory.resx">
+      <DependentUpon>frmMediaHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Playlist\frmMissingVMGContent.resx">
+      <DependentUpon>frmMissingVMGContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Playlist\frmMultiExportSchedule.resx">
+      <DependentUpon>frmMultiExportSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Playlist\frmPlaylist.resx">
+      <DependentUpon>frmPlaylist.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Playlist\frmReplicatePlaylist.resx">
+      <DependentUpon>frmReplicatePlaylist.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Playlist\frmSecondaryEvent.resx">
+      <DependentUpon>frmSecondaryEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Playlist\frmSecondaryEventDetails.resx">
+      <DependentUpon>frmSecondaryEventDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Playlist\frmSelectChannel.resx">
+      <DependentUpon>frmSelectChannel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Playlist\frmStartTime.resx">
+      <DependentUpon>frmStartTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmChangePassword.resx">
+      <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDashBoard.resx">
+      <DependentUpon>frmDashBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="myData.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>myData.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\DataSources\Framework.LINQEntityBase.datasource" />
+    <None Include="Properties\DataSources\PushVodIngestion.DataProvider.tblIngestion.datasource" />
+    <None Include="Properties\DataSources\PushVodIngestion.DataProvider.tblPlayoutPort.datasource" />
+    <None Include="Properties\DataSources\System.Data.DataTable.datasource" />
+    <None Include="Properties\DataSources\tblChannel.datasource" />
+    <None Include="Properties\DataSources\tblDe.datasource" />
+    <None Include="Properties\DataSources\tblIngestion.datasource" />
+    <None Include="Properties\DataSources\tblSrc.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Service References\ServiceReference1\PushVodIngestion.ServiceReference1.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\Service11.wsdl" />
+    <None Include="Service References\ServiceReference1\Service18.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\Service181.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\Service182.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\Service183.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\Service184.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\Service185.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\Service186.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\Service187.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddressBook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddressBook_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AmortizationRule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AmortizationRule_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AmortizationRule_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AmortizationRule_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AudioCodec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AudioCodec_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AudioType.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AudioType_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CensorRating.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CensorRating_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Channel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Channel_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Content.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Content_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Contract.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Contract_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Contract_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ContractGeneral.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ContractLicense.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ContractPayments.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ContractTitles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Currency.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Currency_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Deal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Deal_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Deal_22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Deal_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DealAttachments.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DealBlackout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DealCategory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DealCategory_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DealComments.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DealContent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DealGeneral.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DealPayment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DealRights.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DealType.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DealType_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeliveryMethod.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeliveryMethod_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delte.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download %281%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EditTechnicalDetails.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EpisodeAttachment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EpisodeTechnical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EpisodeTrackDetails.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Genre.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Genre_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Gray_Gradient.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Import-Excel_22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Inventory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ipad-wallpaper-blue-gradient.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LanguageMaster.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LanguageMaster_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\live.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LoginOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LoginOK_22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mail_22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MDB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MDB_22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MDB_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MediaCategoryType.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MediaCategoryType_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MediaLibraryListing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MediaLibraryListing_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new_22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paymentTerms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paymentTerms_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Planning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Planning_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Planning_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Release.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Release_22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reset.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tool.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tool_42.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\total assest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VideoAspectRatio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VideoAspectRatio_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VideoCodec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VideoCodec_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VideoType.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VideoType_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="date-128.ico" />
+    <None Include="Resources\tata-sky-logo.png" />
+    <None Include="Service References\ServiceReference1\Service11.disco" />
+    <None Include="Resources\Delete_22.png" />
+    <None Include="Resources\DB Update_22.png" />
+    <None Include="Resources\DB Update.png" />
+    <None Include="Resources\content_icon_features_SMS_34x34.png" />
+    <None Include="Resources\apple-touch-icon.png" />
+    <None Include="Resources\Additem_35.png" />
+    <None Include="Resources\add22.png" />
+    <None Include="Resources\add.png" />
+    <None Include="Resources\300px-Tata_Sky_Logo.svg1.png" />
+    <None Include="Resources\300px-Tata_Sky_Logo.svg.png" />
+    <None Include="Resources\250px-Pictogram_voting_merge.svg_.png" />
+    <None Include="Resources\2_schedule_icon_32.png" />
+    <None Include="Resources\view_refresh.png" />
+    <None Include="Resources\travel_plan-22.png" />
+    <None Include="Resources\tool_30.png" />
+    <None Include="Resources\tatasky.png" />
+    <None Include="Resources\save_22.png" />
+    <None Include="Resources\print_22.png" />
+    <None Include="Resources\images.png" />
+    <None Include="Resources\image_32.png" />
+    <None Include="Resources\groupSMS.jpeg" />
+    <None Include="Resources\Export Excel_22.png" />
+    <None Include="Resources\edit1.png" />
+    <None Include="Resources\edit_22.png" />
+    <None Include="Resources\edit.png" />
+    <None Include="Resources\duties_22.png" />
+    <None Include="Resources\download.jpg" />
+    <None Include="Service References\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
+    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FrameWork\FrameWork.csproj">
+      <Project>{8466e348-521f-4bda-89be-64f1e0a368bf}</Project>
+      <Name>FrameWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PushVodIngestion.DataProvider\PushVodIngestion.DataProvider.csproj">
+      <Project>{0deedcc6-bf5f-4142-949f-acc0e642759d}</Project>
+      <Name>PushVodIngestion.DataProvider</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

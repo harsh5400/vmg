@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/PushVodIngestion.DataProvider" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/PushVodIngestion.DataProvider" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://14.140.112.80/vodService2/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://14.140.112.80/vodService2/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Framework" />
+  <xs:complexType name="tbl_Adi_ingest_item_file_info">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Framework" base="q1:LINQEntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="itemCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="duration_Frames" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="rowguid" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="tbl_Adi_ingest_item_file_info" nillable="true" type="tns:tbl_Adi_ingest_item_file_info" />
+  <xs:complexType name="tblAutomation">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/Framework" base="q2:LINQEntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SID" type="xs:long" />
+          <xs:element minOccurs="0" name="AutomationPlateform" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="tblPlayoutPorts" nillable="true" type="tns:ArrayOftblPlayoutPort">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="tblAutomation" nillable="true" type="tns:tblAutomation" />
+  <xs:complexType name="ArrayOftblPlayoutPort">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tblPlayoutPort" nillable="true" type="tns:tblPlayoutPort" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftblPlayoutPort" nillable="true" type="tns:ArrayOftblPlayoutPort" />
+  <xs:complexType name="tblPlayoutPort">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/Framework" base="q3:LINQEntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SID" type="xs:long" />
+          <xs:element minOccurs="0" name="Descriptions" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ChannelName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AutomationSID" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="StartTime" nillable="true" type="ser:duration" />
+          <xs:element minOccurs="0" name="tblPlaylists" nillable="true" type="tns:ArrayOftblPlaylist">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="tblPlayoutPort" nillable="true" type="tns:tblPlayoutPort" />
+  <xs:complexType name="ArrayOftblPlaylist">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tblPlaylist" nillable="true" type="tns:tblPlaylist" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftblPlaylist" nillable="true" type="tns:ArrayOftblPlaylist" />
+  <xs:complexType name="tblPlaylist">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/Framework" base="q4:LINQEntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SID" type="xs:long" />
+          <xs:element minOccurs="0" name="PlayoutTime" nillable="true" type="ser:duration" />
+          <xs:element minOccurs="0" name="Date" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="PlayoutPortSID" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="MediaSID" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="addon" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="modon" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="PlayOrderSID" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="FixedEvent" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="SchDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Approved" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Exported" nillable="true" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="tblPlaylist" nillable="true" type="tns:tblPlaylist" />
+  <xs:complexType name="tblChannel">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/Framework" base="q5:LINQEntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SID" type="xs:long" />
+          <xs:element minOccurs="0" name="SrcSID" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="addon" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="modon" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="tblIngestions" nillable="true" type="tns:ArrayOftblIngestion">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="tblChannel" nillable="true" type="tns:tblChannel" />
+  <xs:complexType name="ArrayOftblIngestion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tblIngestion" nillable="true" type="tns:tblIngestion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftblIngestion" nillable="true" type="tns:ArrayOftblIngestion" />
+  <xs:complexType name="tblIngestion">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/Framework" base="q6:LINQEntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SID" type="xs:long" />
+          <xs:element minOccurs="0" name="TxId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ChannelSID" type="xs:long" />
+          <xs:element minOccurs="0" name="ProgrameName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Date" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="StartTime" nillable="true" type="ser:duration" />
+          <xs:element minOccurs="0" name="EndDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="EndTime" nillable="true" type="ser:duration" />
+          <xs:element minOccurs="0" name="Duration" nillable="true" type="ser:duration" />
+          <xs:element minOccurs="0" name="DeleteDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="addon" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="modon" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DesSID" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="SourceTypeSID" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="itemCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ReadyToAir" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="tblPlaylists" nillable="true" type="tns:ArrayOftblPlaylist">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="tblIngestion" nillable="true" type="tns:tblIngestion" />
+  <xs:complexType name="tblDe">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/Framework" base="q7:LINQEntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SID" type="xs:long" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Camera" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="tblIngestions" nillable="true" type="tns:ArrayOftblIngestion">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="tblDe" nillable="true" type="tns:tblDe" />
+  <xs:complexType name="tblReportVersion">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/Framework" base="q8:LINQEntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SID" type="xs:long" />
+          <xs:element minOccurs="0" name="ReportName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="lastVersion" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="lastDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ChannelSID" nillable="true" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="tblReportVersion" nillable="true" type="tns:tblReportVersion" />
+  <xs:complexType name="tblSourceType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/Framework" base="q9:LINQEntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SID" type="xs:long" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="tblIngestions" nillable="true" type="tns:ArrayOftblIngestion">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="tblSourceType" nillable="true" type="tns:tblSourceType" />
+  <xs:complexType name="tblSrc">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q10="http://schemas.datacontract.org/2004/07/Framework" base="q10:LINQEntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SID" type="xs:long" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="tblChannels" nillable="true" type="tns:ArrayOftblChannel">
+            <xs:annotation>
+              <xs:appinfo>
+                <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="tblSrc" nillable="true" type="tns:tblSrc" />
+  <xs:complexType name="ArrayOftblChannel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tblChannel" nillable="true" type="tns:tblChannel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftblChannel" nillable="true" type="tns:ArrayOftblChannel" />
+  <xs:complexType name="vwApprovedPlaylist">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q11="http://schemas.datacontract.org/2004/07/Framework" base="q11:LINQEntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SID" type="xs:long" />
+          <xs:element minOccurs="0" name="PlayoutTime" nillable="true" type="ser:duration" />
+          <xs:element minOccurs="0" name="Date" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="PlayoutPortSID" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="MediaSID" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="addon" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="modon" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="PlayOrderSID" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="FixedEvent" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="SchDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Approved" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Exported" nillable="true" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="vwApprovedPlaylist" nillable="true" type="tns:vwApprovedPlaylist" />
+  <xs:complexType name="vwChannel">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q12="http://schemas.datacontract.org/2004/07/Framework" base="q12:LINQEntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SID" type="xs:long" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SourcePort" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="vwChannel" nillable="true" type="tns:vwChannel" />
+  <xs:complexType name="vwDubList">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/Framework" base="q13:LINQEntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Date" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="itemCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SourceTypeSID" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="ProgrameName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Duration" nillable="true" type="ser:duration" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="vwDubList" nillable="true" type="tns:vwDubList" />
+  <xs:complexType name="vwIngestion">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q14="http://schemas.datacontract.org/2004/07/Framework" base="q14:LINQEntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SID" type="xs:long" />
+          <xs:element minOccurs="0" name="TxId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ProgrameName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ChannelName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StartDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="StartTime" nillable="true" type="ser:duration" />
+          <xs:element minOccurs="0" name="EndDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="EndTime" nillable="true" type="ser:duration" />
+          <xs:element minOccurs="0" name="SorcePort" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DestinationPort" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Camera" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DestinationPortSID" type="xs:long" />
+          <xs:element minOccurs="0" name="SourceTypeSID" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="Duration" nillable="true" type="ser:duration" />
+          <xs:element minOccurs="0" name="DeleteDate" nillable="true" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="vwIngestion" nillable="true" type="tns:vwIngestion" />
+  <xs:complexType name="User">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q15="http://schemas.datacontract.org/2004/07/Framework" base="q15:LINQEntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SID" type="xs:long" />
+          <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LoginName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LoginPassword" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+          <xs:element minOccurs="0" name="PrefixList" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ChannelList" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="User" nillable="true" type="tns:User" />
+</xs:schema>
