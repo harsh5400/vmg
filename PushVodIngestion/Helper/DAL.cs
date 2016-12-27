@@ -16,9 +16,10 @@ using Microsoft.Office.Interop.Outlook;
 /// 
 namespace PushVodIngestion
 {
-
+   
     public class DAL
     {
+        private string test;
         private static SqlConnection con = new SqlConnection();
         public DAL()
         {
